@@ -157,24 +157,24 @@ class UserFormMixin(forms.ModelForm):
 
 
 class UserCreationForm(UserFormMixin, BaseUserCreationForm):
-    phone_number = PhoneNumberField(widget=forms.TextInput(), required=False)
+    ##phone_number = PhoneNumberField(widget=forms.TextInput(), required=False)
 
     class Meta(BaseUserCreationForm.Meta):
         fields = ['username', 'email', 'password1', 'password2']
         personal_fields = ['first_name', 'last_name', 'phone_number', 'birth_date']
         fieldsets = (
             (None, {'classes': ('wide',), 'fields': fields}),
-            ('Personal Info', {'classes': ('wide',), 'fields': personal_fields}),
+            (_('Personal Info'), {'classes': ('wide',), 'fields': personal_fields}),
             (
-                'Permissions',
+                _('Permissions'),
                 {'classes': ('wide',), 'fields': ['is_active', 'is_staff', 'groups']},
             ),
         )
         fieldsets_superuser = (
             (None, {'classes': ('wide',), 'fields': fields}),
-            ('Personal Info', {'classes': ('wide',), 'fields': personal_fields}),
+            (_('Personal Info'), {'classes': ('wide',), 'fields': personal_fields}),
             (
-                'Permissions',
+                _('Permissions'),
                 {
                     'classes': ('wide',),
                     'fields': ['is_active', 'is_staff', 'is_superuser', 'groups'],
